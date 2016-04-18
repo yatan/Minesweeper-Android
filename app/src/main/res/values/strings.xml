@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Buscaminas</string>
+    <string name="btn_ayuda">Ayuda</string>
+    <string name="btn_start">Empezar Partida</string>
+    <string name="btn_salir">Salir</string>
+    <string name="btn_principal">Ir pantalla principal</string>
+</resources>
