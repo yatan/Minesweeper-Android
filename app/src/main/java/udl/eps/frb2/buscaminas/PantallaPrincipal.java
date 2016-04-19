@@ -21,7 +21,7 @@ public class PantallaPrincipal extends AppCompatActivity {
     }
 
     public void iniciar(View clickedButton) {
-        Intent in = new Intent(this, Juego.class);
+        Intent in = new Intent(this, PantallaConfiguracion.class);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
         finish();

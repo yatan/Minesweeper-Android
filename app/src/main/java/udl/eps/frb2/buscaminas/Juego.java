@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import android.app.Activity;
 import android.view.View.OnClickListener;
@@ -24,13 +25,18 @@ public class Juego extends Activity implements OnClickListener {
     ArrayList<Button> mButtons = new ArrayList<Button>();
     int columnes = 5;
     int bombcount = 0;
-    int [][] graella = new int[columnes][columnes];
+    int [][] graella;
     Random r = new Random();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        Intent inten = getIntent();
+        String colum = inten.getStringExtra("columnas");
+        columnes = Integer.parseInt(colum);
+        graella = new int[columnes][columnes];
 
         /*
         Creació del array
@@ -66,6 +72,7 @@ public class Juego extends Activity implements OnClickListener {
                     cb.setText(" ");
                 //else if(graella[i][j] == 1)
                 //    cb.setText("B");
+
 
                 cb.setId(contador);
                 contador += 1;
@@ -125,6 +132,8 @@ public class Juego extends Activity implements OnClickListener {
                 contadorBombas += 1;
             if(graella[fila][columna+1] == 1)
                 contadorBombas += 1;
+            if(graella[fila+1][columna+1] == 1)
+                contadorBombas += 1;
         }
         else if(fila == columnes-1 && columna == columnes-1)
         {
@@ -132,6 +141,8 @@ public class Juego extends Activity implements OnClickListener {
             if(graella[fila-1][columna] == 1)
                 contadorBombas += 1;
             if(graella[fila][columna-1] == 1)
+                contadorBombas += 1;
+            if(graella[fila-1][columna-1] == 1)
                 contadorBombas += 1;
         }
         else if(fila == columnes-1 && columna == 0)
@@ -141,6 +152,8 @@ public class Juego extends Activity implements OnClickListener {
                 contadorBombas += 1;
             if(graella[fila][columna+1] == 1)
                 contadorBombas += 1;
+            if(graella[fila-1][columna+1] == 1)
+                contadorBombas += 1;
         }
         else if(fila == 0 && columna == columnes-1)
         {
@@ -148,6 +161,8 @@ public class Juego extends Activity implements OnClickListener {
             if(graella[fila+1][columna] == 1)
                 contadorBombas += 1;
             if(graella[fila][columna-1] == 1)
+                contadorBombas += 1;
+            if(graella[fila-1][columna+1] == 1)
                 contadorBombas += 1;
         }
         //Verificar limites
@@ -247,8 +262,11 @@ public class Juego extends Activity implements OnClickListener {
             int id = casilla.getId();
             int fila = id / columnes;
             int columna = id % columnes;
-            if(graella[fila][columna]==1)
-                casilla.setText("B");
+            if(graella[fila][columna]==1) {
+                casilla.setText("MINA");
+                //casilla.setBackground(getResources().getDrawable(R.drawable.mina));
+            }
+
         }
     }
 /*
