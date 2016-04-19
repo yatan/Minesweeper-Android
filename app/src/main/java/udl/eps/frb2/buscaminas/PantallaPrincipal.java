@@ -17,4 +17,9 @@ public class PantallaPrincipal extends AppCompatActivity {
         Intent in = new Intent(this, PantallaAyuda.class);
         startActivity(in);
     }
+
+    public void iniciar(View clickedButton) {
+        Intent in = new Intent(this, Juego.class);
+        startActivity(in);
+    }
 }
