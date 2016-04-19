@@ -15,11 +15,15 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     public void mostrarAyuda(View clickedButton) {
         Intent in = new Intent(this, PantallaAyuda.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
+        finish();
     }
 
     public void iniciar(View clickedButton) {
         Intent in = new Intent(this, Juego.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
+        finish();
     }
 }
