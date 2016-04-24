@@ -23,6 +23,9 @@ public class Juego extends Activity implements OnClickListener {
     static final String STATE_BOMBS = "bombcount";
 
     ArrayList<Button> mButtons = new ArrayList<Button>();
+
+    String alias = "";
+
     int columnes = 5;
     int bombcount = 0;
     int [][] graella;
@@ -35,6 +38,7 @@ public class Juego extends Activity implements OnClickListener {
 
         Intent inten = getIntent();
         String colum = inten.getStringExtra("columnas");
+        alias = inten.getStringExtra("alias");
         columnes = Integer.parseInt(colum);
         graella = new int[columnes][columnes];
 
@@ -162,7 +166,7 @@ public class Juego extends Activity implements OnClickListener {
                 contadorBombas += 1;
             if(graella[fila][columna-1] == 1)
                 contadorBombas += 1;
-            if(graella[fila-1][columna+1] == 1)
+            if(graella[fila-1][columna-1] == 1)
                 contadorBombas += 1;
         }
         //Verificar limites
@@ -268,6 +272,11 @@ public class Juego extends Activity implements OnClickListener {
             }
 
         }
+        Intent in = new Intent(this, PantallaResultado.class);
+        in.putExtra("columnas", String.valueOf(columnes));
+        in.putExtra("alias", alias);
+        startActivityForResult(in, 1);
+        finish();
     }
 /*
     @Override

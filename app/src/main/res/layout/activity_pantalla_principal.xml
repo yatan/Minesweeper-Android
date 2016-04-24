@@ -9,19 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="udl.eps.frb2.buscaminas.PantallaPrincipal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_ayuda"
         android:id="@+id/button"
         android:layout_marginTop="71dp"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:onClick="mostrarAyuda" />
 
@@ -40,6 +33,7 @@
         android:text="@string/btn_salir"
         android:id="@+id/button3"
         android:layout_below="@+id/button2"
-        android:layout_alignStart="@+id/button" />
+        android:layout_alignStart="@+id/button"
+        android:onClick="botonSalir" />
 
 </RelativeLayout>

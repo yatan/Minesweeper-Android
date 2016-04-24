@@ -5,7 +5,8 @@
     <string name="btn_salir">Salir</string>
     <string name="btn_principal">Ir pantalla principal</string>
     <string name="lbl_alias">Alias</string>
-    <string name="lbl_tamaño">Dificultad</string>
+    <string name="lbl_tamaño">Tamaño columna</string>
     <string name="lbl_tiempo">Control de tiempo</string>
     <string name="lbl_minas">% minas</string>
+    <string name="txt_ayuda">Selecciona las casillas, y evita las minas segun los resultados de las casillas adyacentes.</string>
 </resources>

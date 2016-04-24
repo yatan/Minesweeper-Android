@@ -12,18 +12,21 @@ import android.widget.EditText;
 public class PantallaConfiguracion extends AppCompatActivity {
 
     EditText columnas;
+    EditText nick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuracion);
-        columnas = (EditText) findViewById(R.id.editText);
+        columnas = (EditText) findViewById(R.id.columnas);
+        nick = (EditText) findViewById(R.id.editText2);
     }
 
     public void iniciarJuego(View clickedButton) {
         Intent in = new Intent(this, Juego.class);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         in.putExtra("columnas", columnas.getText().toString());
+        in.putExtra("alias", nick.getText().toString());
         startActivityForResult(in, 1);
         finish();
     }
