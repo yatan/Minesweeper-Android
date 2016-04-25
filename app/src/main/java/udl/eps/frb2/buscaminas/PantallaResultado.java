@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
 
 /**
  * Created by yatan on 4/18/16.
@@ -23,8 +24,10 @@ public class PantallaResultado extends AppCompatActivity{
         Intent inten = getIntent();
         String colum = inten.getStringExtra("columnas");
         String alias = inten.getStringExtra("alias");
+        String tiempo = inten.getStringExtra("tiempo");
         textviu.append("Alias: " + alias);
-        textviu.append("Columnas elegidas: " + colum);
+        textviu.append("\nColumnas elegidas: " + colum);
+        textviu.append("\nTiempo gastado: " + tiempo + " segundos.");
 
     }
 
@@ -37,10 +40,12 @@ public class PantallaResultado extends AppCompatActivity{
 
     public void enviarLOG(View clickedButton) {
         Toast.makeText(this, "Enviando mail de log", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(Intent.ACTION_SEND); // it's not ACTION_SEND
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_EMAIL, "a@b.com");
+        Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+        intent.setData(Uri.parse("mailto:"));
+        //intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Resultado buscaminas");
+        intent.putExtra(Intent.EXTRA_EMAIL, "frb2@alumnes.udl.cat");
+        intent.putExtra(Intent.EXTRA_TEXT, textviu.getText().toString());
         startActivity(intent);
-        finish();
     }
 }

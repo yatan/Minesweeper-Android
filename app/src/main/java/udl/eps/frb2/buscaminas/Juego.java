@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import android.os.Handler;
 
 import android.app.Activity;
 import android.view.View.OnClickListener;
@@ -22,6 +24,12 @@ public class Juego extends Activity implements OnClickListener {
     static final String STATE_GRAELLA = "graella";
     static final String STATE_BOMBS = "bombcount";
 
+    private Handler timer = new Handler();
+    private int secondsPassed = 0;
+
+    TextView txtTimer;
+
+
     ArrayList<Button> mButtons = new ArrayList<Button>();
 
     String alias = "";
@@ -35,6 +43,8 @@ public class Juego extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        txtTimer = (TextView) findViewById(R.id.textView);
 
         Intent inten = getIntent();
         String colum = inten.getStringExtra("columnas");
@@ -88,6 +98,7 @@ public class Juego extends Activity implements OnClickListener {
         GridView gridView = (GridView)findViewById(R.id.gridView);
         gridView.setAdapter(new CustomAdapter(mButtons));
         gridView.setNumColumns(columnes);
+        startTimer();
     }
 
     @Override
@@ -262,6 +273,7 @@ public class Juego extends Activity implements OnClickListener {
     }
 
     public void DescobrirMines(){
+        stopTimer();
         for (Button casilla:mButtons) {
             int id = casilla.getId();
             int fila = id / columnes;
@@ -275,16 +287,42 @@ public class Juego extends Activity implements OnClickListener {
         Intent in = new Intent(this, PantallaResultado.class);
         in.putExtra("columnas", String.valueOf(columnes));
         in.putExtra("alias", alias);
+        in.putExtra("tiempo", txtTimer.getText().toString());
         startActivityForResult(in, 1);
         finish();
     }
-/*
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putIntArray(STATE_GRAELLA, graella);
-        savedInstanceState.putInt(STATE_BOMBS, bombcount);
 
-        super.onSaveInstanceState(savedInstanceState);
+    public void startTimer()
+    {
+        if (secondsPassed == 0)
+        {
+            timer.removeCallbacks(updateTimeElasped);
+            // tell timer to run call back after 1 second
+            timer.postDelayed(updateTimeElasped, 1000);
+        }
     }
-    */
+
+    public void stopTimer()
+    {
+        // disable call backs
+        timer.removeCallbacks(updateTimeElasped);
+    }
+
+    // timer call back when timer is ticked
+    private Runnable updateTimeElasped = new Runnable()
+    {
+        public void run()
+        {
+            long currentMilliseconds = System.currentTimeMillis();
+            ++secondsPassed;
+            txtTimer.setText("Tiempo " + Integer.toString(secondsPassed));
+
+            // add notification
+            timer.postAtTime(this, currentMilliseconds);
+            // notify to call back after 1 seconds
+            // basically to remain in the timer loop
+            timer.postDelayed(updateTimeElasped, 1000);
+        }
+    };
+
 }
