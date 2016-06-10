@@ -35,11 +35,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".Juego"
-            android:screenOrientation="sensorLandscape">
+            >
+            <!--android:screenOrientation="sensorLandscape"-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity" >
         </activity>
     </application>
 

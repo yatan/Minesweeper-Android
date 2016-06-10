@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <fragment class="udl.eps.frb2.buscaminas.Juego"
+        android:layout_height="match_parent"
+        android:layout_width="0px"
+        android:layout_weight="60"
+        android:id="@+id/FrgListado"   />
+
+    <fragment class="udl.eps.frb2.buscaminas.FragmentDetalle"
+        android:layout_height="match_parent"
+        android:layout_width="0px"
+        android:layout_weight="40"
+        android:id="@+id/FrgDetalle"    />
+
+</LinearLayout>

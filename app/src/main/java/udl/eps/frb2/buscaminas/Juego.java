@@ -2,6 +2,7 @@ package udl.eps.frb2.buscaminas;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ import java.util.Random;
 /**
  * Created by yatan on 4/18/16.
  */
-public class Juego extends Activity implements OnClickListener {
+public class Juego extends FragmentActivity implements OnClickListener {
     static final String STATE_GRAELLA = "graella";
     static final String STATE_BOMBS = "bombcount";
 
@@ -108,6 +109,11 @@ public class Juego extends Activity implements OnClickListener {
         int fila = id / columnes;
         int columna = id % columnes;
 
+
+        FragmentDetalle fgdet = (FragmentDetalle) getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
+        fgdet.mostrarDetalle("Hola");
+
+
         //Es bomba ?
         if(graella[fila][columna] == 1){
             Toast.makeText(getBaseContext(), "Booom", Toast.LENGTH_SHORT).show();
@@ -177,7 +183,7 @@ public class Juego extends Activity implements OnClickListener {
                 contadorBombas += 1;
             if(graella[fila][columna-1] == 1)
                 contadorBombas += 1;
-            if(graella[fila-1][columna-1] == 1)
+            if(graella[fila+1][columna-1] == 1)
                 contadorBombas += 1;
         }
         //Verificar limites

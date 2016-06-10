@@ -23,7 +23,7 @@ public class PantallaConfiguracion extends AppCompatActivity {
     }
 
     public void iniciarJuego(View clickedButton) {
-        Intent in = new Intent(this, Juego.class);
+        Intent in = new Intent(this, MainActivity.class);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         in.putExtra("columnas", columnas.getText().toString());
         in.putExtra("alias", nick.getText().toString());
