@@ -50,6 +50,13 @@ public class Juego extends Fragment implements OnClickListener {
                 R.layout.game, container, false);
     }
 
+    private void enviarTXT(String texto){
+        FragmentDetalle frag = (FragmentDetalle) getFragmentManager().findFragmentById(R.id.FrgDetalle);
+        if (frag != null && frag.isInLayout()) {
+            frag.mostrarDetalle(texto);
+        }
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -62,6 +69,9 @@ public class Juego extends Fragment implements OnClickListener {
         alias = inten.getStringExtra("alias");
         columnes = Integer.parseInt(colum);
         graella = new int[columnes][columnes];
+
+        enviarTXT("Nick: " + alias);
+        enviarTXT("\nCasillas: " + String.valueOf(columnes*columnes));
 
         /*
         Creació del array
@@ -147,6 +157,8 @@ public class Juego extends Fragment implements OnClickListener {
     }
 
     public int getValorCasilla(int fila, int columna){
+        enviarTXT("\nCasilla seleccionada: " + fila + "," + columna);
+        enviarTXT("\nTiempo: " + secondsPassed);
         //int fila = posicion / columnes;
         //int columna = posicion % columnes;
         int contadorBombas = 0;

@@ -18,12 +18,12 @@ public class FragmentDetalle extends Fragment {
 
         return inflater.inflate(R.layout.log_frag, container, false);
     }
-    /*
+
     public void mostrarDetalle(String texto) {
 
         TextView txtDetalle;
         txtDetalle = (TextView) getView().findViewById(R.id.TxtDetalle);
-        txtDetalle.setText(texto);
+        txtDetalle.append(texto);
     }
-    */
+
 }

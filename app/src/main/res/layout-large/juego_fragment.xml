@@ -7,13 +7,15 @@
     <fragment class="udl.eps.frb2.buscaminas.Juego"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_weight="60"
-        android:id="@+id/FrgListado"   />
+        android:id="@+id/FrgListado"
+        android:layout_weight="6"
+        android:layout_gravity="top" />
 
     <fragment class="udl.eps.frb2.buscaminas.FragmentDetalle"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_weight="40"
-        android:id="@+id/FrgDetalle"    />
+        android:layout_weight="4"
+        android:id="@+id/FrgDetalle"
+        android:layout_gravity="bottom" />
 
 </LinearLayout>
