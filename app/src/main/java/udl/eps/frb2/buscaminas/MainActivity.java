@@ -1,12 +1,10 @@
 package udl.eps.frb2.buscaminas;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 
-/**
- * Created by yatan on 6/10/16.
- */
-public class MainActivity extends FragmentActivity {
+
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

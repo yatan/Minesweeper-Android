@@ -1,10 +1,12 @@
 package udl.eps.frb2.buscaminas;
 
+import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -18,10 +20,8 @@ import android.view.View.OnClickListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by yatan on 4/18/16.
- */
-public class Juego extends FragmentActivity implements OnClickListener {
+
+public class Juego extends Fragment implements OnClickListener {
     static final String STATE_GRAELLA = "graella";
     static final String STATE_BOMBS = "bombcount";
 
@@ -41,13 +41,23 @@ public class Juego extends FragmentActivity implements OnClickListener {
     Random r = new Random();
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        /**
+         * Inflate the layout for this fragment
+         */
+        return inflater.inflate(
+                R.layout.game, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+        //setContentView(R.layout.game);
 
-        txtTimer = (TextView) findViewById(R.id.textView);
+        txtTimer = (TextView) getView().findViewById(R.id.textView);
 
-        Intent inten = getIntent();
+        Intent inten = getActivity().getIntent();
         String colum = inten.getStringExtra("columnas");
         alias = inten.getStringExtra("alias");
         columnes = Integer.parseInt(colum);
@@ -81,7 +91,7 @@ public class Juego extends FragmentActivity implements OnClickListener {
         int contador = 0;
         for(int i=0; i<columnes;i++){
             for(int j=0 ; j<columnes; j++) {
-                cb = new Button(this);
+                cb = new Button(getActivity());
 
                 //if(graella[i][j] == 0)
                     cb.setText(" ");
@@ -96,7 +106,7 @@ public class Juego extends FragmentActivity implements OnClickListener {
                 mButtons.add(cb);
             }
         }
-        GridView gridView = (GridView)findViewById(R.id.gridView);
+        GridView gridView = (GridView) getView().findViewById(R.id.gridView);
         gridView.setAdapter(new CustomAdapter(mButtons));
         gridView.setNumColumns(columnes);
         startTimer();
@@ -109,14 +119,9 @@ public class Juego extends FragmentActivity implements OnClickListener {
         int fila = id / columnes;
         int columna = id % columnes;
 
-
-        FragmentDetalle fgdet = (FragmentDetalle) getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
-        fgdet.mostrarDetalle("Hola");
-
-
         //Es bomba ?
         if(graella[fila][columna] == 1){
-            Toast.makeText(getBaseContext(), "Booom", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getBaseContext(), "Booom", Toast.LENGTH_SHORT).show();
             DescobrirMines();
         }
         else
@@ -275,7 +280,7 @@ public class Juego extends FragmentActivity implements OnClickListener {
     }
 
     public void Mensaje(String str){
-        Toast.makeText(getBaseContext(), str.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getBaseContext(), str.toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void DescobrirMines(){
@@ -290,12 +295,12 @@ public class Juego extends FragmentActivity implements OnClickListener {
             }
 
         }
-        Intent in = new Intent(this, PantallaResultado.class);
+        Intent in = new Intent(getActivity(), PantallaResultado.class);
         in.putExtra("columnas", String.valueOf(columnes));
         in.putExtra("alias", alias);
         in.putExtra("tiempo", txtTimer.getText().toString());
         startActivityForResult(in, 1);
-        finish();
+        getActivity().finish();
     }
 
     public void startTimer()
