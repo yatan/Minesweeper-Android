@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.net.Uri;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by yatan on 4/18/16.
  */
@@ -38,7 +41,8 @@ public class PantallaResultado extends AppCompatActivity{
         {
             ContentValues nuevoResultado = new ContentValues();
             nuevoResultado.put("alias", alias);
-            nuevoResultado.put("fecha", "0/0/0");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            nuevoResultado.put("fecha", dateFormat.format(new Date()));
             nuevoResultado.put("columnas", colum);
             nuevoResultado.put("tiempo", tiempo);
 

@@ -10,8 +10,5 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego_fragment);
-
-        /*FragmentListado frgListado = (FragmentListado)getSupportFragmentManager().findFragmentById(R.id.FrgListado);
-        frgListado.setCorreosListener(this);*/
     }
 }

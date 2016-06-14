@@ -46,6 +46,9 @@
         <activity android:name=".OpcionesActivity"
             android:label="Opciones">
         </activity>
+        <activity android:name=".ResultadosActivity">
+        </activity>
+
     </application>
 
 </manifest>

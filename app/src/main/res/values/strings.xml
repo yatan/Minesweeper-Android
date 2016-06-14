@@ -9,4 +9,5 @@
     <string name="lbl_tiempo">Control de tiempo</string>
     <string name="lbl_minas">% minas</string>
     <string name="txt_ayuda">Selecciona las casillas, y evita las minas segun los resultados de las casillas adyacentes.</string>
+    <string name="txt_mostrar_results">Mostrar Resultados</string>
 </resources>

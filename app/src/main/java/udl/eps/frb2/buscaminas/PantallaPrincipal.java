@@ -37,6 +37,12 @@ public class PantallaPrincipal extends AppCompatActivity {
         finish();
     }
 
+    public void mostrarResultados(View clickedButton) {
+        Intent in = new Intent(this, ResultadosActivity.class);
+        startActivity(in);
+        finish();
+    }
+
     public void botonSalir(View clickedButton) {
         finish();
     }
