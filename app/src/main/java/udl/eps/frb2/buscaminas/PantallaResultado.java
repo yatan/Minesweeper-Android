@@ -1,6 +1,8 @@
 package udl.eps.frb2.buscaminas;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,6 +30,21 @@ public class PantallaResultado extends AppCompatActivity{
         textviu.append("Alias: " + alias);
         textviu.append("\nColumnas elegidas: " + colum);
         textviu.append("\nTiempo gastado: " + tiempo + " segundos.");
+
+        ResultadosSQLiteHelper resultdb = new ResultadosSQLiteHelper(this, "baseDB", null, 1);
+        SQLiteDatabase db = resultdb.getWritableDatabase();
+
+        if(db != null)
+        {
+            ContentValues nuevoResultado = new ContentValues();
+            nuevoResultado.put("alias", alias);
+            nuevoResultado.put("fecha", "0/0/0");
+            nuevoResultado.put("columnas", colum);
+            nuevoResultado.put("tiempo", tiempo);
+
+            db.insert("Resultados", null, nuevoResultado);
+            db.close();
+        }
 
     }
 

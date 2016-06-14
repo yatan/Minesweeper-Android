@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Opciones Funcionales">
+        <EditTextPreference
+            android:key="alias"
+            android:title="Alias"
+            android:summary="Nombre del jugador"
+            android:dialogTitle="Introduce un nombre"
+            android:defaultValue="Jugador"/>
+        <EditTextPreference
+            android:key="columas"
+            android:title="Tamaño parrilla"
+            android:summary="Numero de columnas"
+            android:dialogTitle="Introduce un valor"
+            android:defaultValue="5"
+            android:inputType="number"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Opciones no funcionales">
+        <CheckBoxPreference
+            android:key="tiempo"
+            android:title="Control de tiempo"
+            android:summary="Marcar para limitar el tiempo de partida"/>
+        <ListPreference
+            android:key="minas"
+            android:title="Porcentaje minas"
+            android:summary="de minas en la partida"
+            android:dialogTitle="Indicar"
+            android:entries="@array/porcentaje"
+            android:entryValues="@array/int_porcentaje"/>
+    </PreferenceCategory>
+</PreferenceScreen>

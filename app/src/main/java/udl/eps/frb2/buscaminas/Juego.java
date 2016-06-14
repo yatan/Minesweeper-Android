@@ -1,8 +1,11 @@
 package udl.eps.frb2.buscaminas;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,10 +67,10 @@ public class Juego extends Fragment implements OnClickListener {
 
         txtTimer = (TextView) getView().findViewById(R.id.textView);
 
-        Intent inten = getActivity().getIntent();
-        String colum = inten.getStringExtra("columnas");
-        alias = inten.getStringExtra("alias");
-        columnes = Integer.parseInt(colum);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        alias = pref.getString("alias","Jugador");
+        columnes = pref.getInt("columnas",5);
+
         graella = new int[columnes][columnes];
 
         enviarTXT("Nick: " + alias);
