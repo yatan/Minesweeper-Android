@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:name="udl.eps.frb2.buscaminas.ListadoResultados"
+        android:id="@+id/fragment_contenedor"
+        android:layout_weight=".4" />
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:name="udl.eps.frb2.buscaminas.DetalleResultados"
+        android:id="@+id/fragment_detalle"
+        android:layout_weight=".4" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu Principal"
+                android:id="@+id/button8"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:onClick="volverPrincipal" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

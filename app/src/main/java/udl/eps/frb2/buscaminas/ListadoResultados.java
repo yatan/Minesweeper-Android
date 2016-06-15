@@ -37,7 +37,6 @@ public class ListadoResultados extends ListFragment implements AdapterView.OnIte
                 new String[] { "alias", "fecha" },
                 new int[] {R.id.alias_entry, R.id.tiempo_entry}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
-        //ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.porcentaje, android.R.layout.simple_expandable_list_item_1);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
     }
@@ -45,18 +44,22 @@ public class ListadoResultados extends ListFragment implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
         SQLiteCursor cosa = (SQLiteCursor) parent.getItemAtPosition(position);
-        Bundle in = new Bundle();
-        in.putInt("consulta",Integer.valueOf(cosa.getString(0)));
+        DetalleResultados frag = (DetalleResultados) getFragmentManager().findFragmentById(R.id.fragment_detalle);
+        if (frag != null && frag.isInLayout()) {
+            frag.MostrarResultado(Integer.valueOf(cosa.getString(0)));
+        }
+        else {
+            Bundle in = new Bundle();
+            in.putInt("consulta", Integer.valueOf(cosa.getString(0)));
 
-        Fragment newFragment = new DetalleResultados();
-        newFragment.setArguments(in);
+            Fragment newFragment = new DetalleResultados();
+            newFragment.setArguments(in);
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_contenedor, newFragment);
-        transaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        //transaction.addToBackStack(null);
-        transaction.commit();
-        //startActivityForResult(in, 1);
-        //Toast.makeText(getActivity(), "Item: " + cosa.getString(0), Toast.LENGTH_SHORT).show();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_contenedor, newFragment);
+            transaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.commit();
+        }
+
     }
 }

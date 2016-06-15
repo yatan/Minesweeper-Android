@@ -14,6 +14,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class DetalleResultados extends Fragment {
+    TextView detalle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.list_detail, container, false);
@@ -23,14 +24,28 @@ public class DetalleResultados extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TextView detalle = (TextView) getView().findViewById(R.id.detalle_resultado);
+        detalle = (TextView) getView().findViewById(R.id.detalle_resultado);
 
-        Bundle saved = this.getArguments();
-        int consulta = saved.getInt("consulta");
+        Fragment frag = getFragmentManager().findFragmentById(R.id.fragment_contenedor);
+        if (frag != null && frag instanceof ListadoResultados == false) {
+            Bundle saved = this.getArguments();
+            int consulta = saved.getInt("consulta");
+
+            ResultadosSQLiteHelper resultdb = new ResultadosSQLiteHelper(getActivity(), "baseDB", null, 1);
+            SQLiteDatabase db = resultdb.getWritableDatabase();
+            Cursor cursor = resultdb.getResult(db, consulta);
+
+            detalle.setText("Alias: "+String.valueOf( cursor.getString(1).toString()));
+            detalle.append("\nFecha: "+String.valueOf( cursor.getString(2).toString()));
+            detalle.append("\nColumnas: "+String.valueOf( cursor.getString(3).toString()));
+            detalle.append("\nTiempo: "+String.valueOf( cursor.getString(4).toString()));
+        }
+    }
+    public void MostrarResultado(int id){
 
         ResultadosSQLiteHelper resultdb = new ResultadosSQLiteHelper(getActivity(), "baseDB", null, 1);
         SQLiteDatabase db = resultdb.getWritableDatabase();
-        Cursor cursor = resultdb.getResult(db, consulta);
+        Cursor cursor = resultdb.getResult(db, id);
 
         detalle.setText("Alias: "+String.valueOf( cursor.getString(1).toString()));
         detalle.append("\nFecha: "+String.valueOf( cursor.getString(2).toString()));

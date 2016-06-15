@@ -10,4 +10,6 @@
     <string name="lbl_minas">% minas</string>
     <string name="txt_ayuda">Selecciona las casillas, y evita las minas segun los resultados de las casillas adyacentes.</string>
     <string name="txt_mostrar_results">Mostrar Resultados</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="detalles_de_la_partida">Detalles de la partida:</string>
 </resources>
